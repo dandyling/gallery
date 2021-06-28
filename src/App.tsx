@@ -2,7 +2,7 @@ import { ChakraProvider, theme } from "@chakra-ui/react";
 import * as React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Home } from "./Home";
+import { Home } from "./features/home/Home";
 
 const queryClient = new QueryClient();
 
