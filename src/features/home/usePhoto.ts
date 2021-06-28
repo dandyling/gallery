@@ -5,17 +5,24 @@ export const api = createApi({
   accessKey: "8f9fbd10d8bb0a7e69dd531aea77d5a0b84152b806286ed7f83f896c1987413b",
 });
 
+export const DEFAULT_PAGE_SIZE = 20;
+
 interface UnsplashPhotosQuery {
   query: string;
   page?: number;
+  perPage: number;
 }
 
-export const useUnsplashPhotos = ({ query, page }: UnsplashPhotosQuery) => {
-  return useQuery(["photos", query, page], async () => {
+export const useUnsplashPhotos = ({
+  query,
+  page,
+  perPage = DEFAULT_PAGE_SIZE,
+}: UnsplashPhotosQuery) => {
+  return useQuery(["photos", query, page, perPage], async () => {
     const result = await api.search.getPhotos({
       query,
       orientation: "landscape",
-      perPage: 20,
+      perPage,
       page,
     });
     if (result.errors) {

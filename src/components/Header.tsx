@@ -18,7 +18,6 @@ export const Header = (props: HeaderProps) => {
       alignItems="center"
       minWidth="100%"
       height="16"
-      px="4"
     >
       {children}
     </Flex>
