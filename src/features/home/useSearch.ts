@@ -7,18 +7,18 @@ export const api = createApi({
 
 export const DEFAULT_PAGE_SIZE = 20;
 
-interface UnsplashPhotosQuery {
+interface SearchQuery {
   query: string;
   page?: number;
-  perPage: number;
+  perPage?: number;
 }
 
-export const useUnsplashPhotos = ({
+export const useSearch = ({
   query,
   page,
   perPage = DEFAULT_PAGE_SIZE,
-}: UnsplashPhotosQuery) => {
-  return useQuery(["photos", query, page, perPage], async () => {
+}: SearchQuery) => {
+  return useQuery(["search", query, page, perPage], async () => {
     const result = await api.search.getPhotos({
       query,
       orientation: "landscape",
