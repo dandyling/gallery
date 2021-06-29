@@ -53,4 +53,8 @@ customize it when you are ready for it.
 
 ## Features
 
-1. Performance - will prefetch the next page
+1. New Photos
+2. Performance - will prefetch the next page
+3. Responsive at 80ch
+4. Infinite Query
+5. Categories

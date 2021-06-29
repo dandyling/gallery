@@ -10,7 +10,7 @@ export const NewPhotosGallery = () => {
   const loader = useRef<HTMLDivElement>(null);
 
   // TODO: Handle error and isLoading from usePhotos
-  const { data, error, fetchNextPage } = usePhotos({
+  const { data, fetchNextPage } = usePhotos({
     page,
   });
 
@@ -20,6 +20,7 @@ export const NewPhotosGallery = () => {
       await fetchNextPage();
       setPage((value) => value + 1);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
