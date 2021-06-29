@@ -1,3 +1,4 @@
+import { Flex, Heading } from "@chakra-ui/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { InfiniteData } from "react-query";
 import { Basic } from "unsplash-js/dist/methods/photos/types";
@@ -35,10 +36,13 @@ export const NewPhotosGallery = () => {
   const photos = getPhotosFromResponse(data);
 
   return (
-    <>
+    <Flex direction="column" maxWidth="100vw">
+      <Heading as="h2" fontSize="xl" py="2" px="2">
+        Discover photos from everywhere
+      </Heading>
       <Gallery photos={photos} />
       <div ref={loader} />
-    </>
+    </Flex>
   );
 };
 

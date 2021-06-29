@@ -10,11 +10,16 @@ import * as React from "react";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Header } from "../../components/Header";
+import { Categories } from "./Categories";
 import { NewPhotosGallery } from "./NewPhotosGallery";
 import { SearchGallery } from "./SearchGallery";
 
 export const Home = () => {
   const [query, setQuery] = useState("");
+
+  const handleClickCategory = (category: string) => {
+    return setQuery(category);
+  };
 
   return (
     <Box minWidth="100vw" maxWidth="100vw" minHeight="100vh" maxHeight="100vh">
@@ -49,10 +54,11 @@ export const Home = () => {
         <Flex
           direction="column"
           width="100%"
-          maxWidth="80ch"
           height="100%"
+          maxWidth="80ch"
           justifyContent="center"
         >
+          <Categories onClickCategory={handleClickCategory} pl="4" pb="4" />
           {query ? <SearchGallery query={query} /> : <NewPhotosGallery />}
         </Flex>
       </Flex>

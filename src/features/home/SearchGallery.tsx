@@ -32,7 +32,7 @@ export const SearchGallery = (props: SearchGalleryProps) => {
   }
 
   return (
-    <Flex direction="column">
+    <Flex direction="column" maxWidth="100vw">
       <GalleryPager
         currentPageNumber={currentPageNumber ?? 1}
         pageSize={pageSize}
