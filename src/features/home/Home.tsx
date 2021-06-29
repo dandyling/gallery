@@ -29,7 +29,7 @@ export const Home = () => {
             />
             <Input
               size="lg"
-              placeholder="Search for photos"
+              placeholder="Search for photos here"
               value={query}
               onChange={(e) => setQuery(e.currentTarget.value)}
             />
