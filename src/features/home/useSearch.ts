@@ -7,9 +7,9 @@ export const api = createApi({
 
 export const DEFAULT_PAGE_SIZE = 20;
 
-interface SearchQuery {
+export interface SearchQuery {
   query: string;
-  page?: number;
+  page: number;
   perPage?: number;
 }
 

@@ -1,19 +1,17 @@
 import { useInfiniteQuery } from "react-query";
-import { api, DEFAULT_PAGE_SIZE } from "./useSearch";
+import { api, DEFAULT_PAGE_SIZE, SearchQuery } from "./useSearch";
 
-interface PhotosQuery {
-  page: number;
-  perPage?: number;
-}
-
-export const usePhotos = ({
+export const useInfiniteSearch = ({
+  query,
   page,
   perPage = DEFAULT_PAGE_SIZE,
-}: PhotosQuery) => {
+}: SearchQuery) => {
   return useInfiniteQuery(
-    ["photos"],
+    ["infinite", query],
     async ({ pageParam }) => {
-      const result = await api.photos.list({
+      const result = await api.search.getPhotos({
+        query,
+        orientation: "landscape",
         perPage,
         page: pageParam,
       });

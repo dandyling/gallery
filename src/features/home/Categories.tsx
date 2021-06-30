@@ -1,15 +1,15 @@
 import { Flex, FlexProps, Heading, Image, Text } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { useTopics } from "./useTopics";
+import { Basic } from "unsplash-js/dist/methods/topics/types";
 
 interface CategoriesProps extends FlexProps {
+  topics: Basic[];
   onClickCategory(category: string): void;
 }
 
 export const Categories = (props: CategoriesProps) => {
-  const { onClickCategory, ...rest } = props;
-  const topics = useTopics();
+  const { onClickCategory, topics, ...rest } = props;
 
   return (
     <Flex direction="column" {...rest}>
@@ -17,7 +17,7 @@ export const Categories = (props: CategoriesProps) => {
         Categories
       </Heading>
       <Flex overflowX="scroll">
-        {topics.data?.response.results.map((topic, i) => {
+        {topics.map((topic, i) => {
           const { cover_photo, title, id } = topic;
 
           const handleClick = () => {

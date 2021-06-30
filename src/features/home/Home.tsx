@@ -9,17 +9,30 @@ import {
 import * as React from "react";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { Basic } from "unsplash-js/dist/methods/topics/types";
 import { Header } from "../../components/Header";
 import { Categories } from "./Categories";
-import { NewPhotosGallery } from "./NewPhotosGallery";
-import { SearchGallery } from "./SearchGallery";
+import { InfiniteGallery } from "./InfiniteGallery";
+import { PageSize } from "./PagerChanger";
+import { PagerGallery } from "./PagerGallery";
+import { useTopics } from "./useTopics";
 
 export const Home = () => {
-  const [query, setQuery] = useState("");
+  const [search, setSearch] = useState("");
+  const [pageSize, setPageSize] = useState<PageSize>(PageSize.All);
+
+  const topics = useTopics();
 
   const handleClickCategory = (category: string) => {
-    return setQuery(category);
+    return setSearch(category);
   };
+
+  const handlePageSizeChange = (size: PageSize) => {
+    setPageSize(size);
+  };
+
+  const query =
+    search === "" ? getDefaultTopic(topics.data?.response.results) : search;
 
   return (
     <Box minWidth="100vw" maxWidth="100vw" minHeight="100vh" maxHeight="100vh">
@@ -35,8 +48,8 @@ export const Home = () => {
             <Input
               size="lg"
               placeholder="Search for photos here"
-              value={query}
-              onChange={(e) => setQuery(e.currentTarget.value)}
+              value={search}
+              onChange={(e) => setSearch(e.currentTarget.value)}
             />
           </InputGroup>
         </Flex>
@@ -58,10 +71,31 @@ export const Home = () => {
           maxWidth="80ch"
           justifyContent="center"
         >
-          <Categories onClickCategory={handleClickCategory} pl="4" pb="4" />
-          {query ? <SearchGallery query={query} /> : <NewPhotosGallery />}
+          <Categories
+            topics={topics.data?.response.results ?? []}
+            onClickCategory={handleClickCategory}
+            pl="4"
+            pb="4"
+          />
+          {pageSize !== PageSize.All ? (
+            <PagerGallery
+              query={query}
+              pageSize={pageSize}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          ) : (
+            <InfiniteGallery
+              query={query}
+              pageSize={pageSize}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          )}
         </Flex>
       </Flex>
     </Box>
   );
+};
+
+const getDefaultTopic = (topics: Partial<Basic>[] | undefined): string => {
+  return topics ? topics![0].title! : "Wallpapers";
 };

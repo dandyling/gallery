@@ -58,3 +58,11 @@ customize it when you are ready for it.
 3. Responsive at 80ch
 4. Infinite Query
 5. Categories
+
+## Todo
+
+1. Implement error boundaries
+2. Implement loading indicator
+3. Fix the pager current number
+4. Suitable type for pageSize change
+5. Use high resolution photos for different screen sizes
