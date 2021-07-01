@@ -2,11 +2,12 @@ import { Flex } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Basic } from "unsplash-js/dist/methods/photos/types";
 import { Gallery } from "../../components/Gallery";
+import { useSearch } from "../../data/useSearch";
+import { ErrorSplash } from "./ErrorSplash";
 import { GalleryPager } from "./GalleryPager";
 import { PagerChanger, PageSize } from "./PagerChanger";
 import { TagsPanel } from "./TagsPanel";
 import { useCurrentPageNumber } from "./useCurrentPageNumber";
-import { useSearch } from "../../data/useSearch";
 
 interface BasicTag {
   type: string;
@@ -32,48 +33,52 @@ export const PagerGallery = (props: PagerGalleryProps) => {
     setFilter("");
   }, [query, currentPageNumber]);
 
-  // TODO: Handle error and isLoading from usePhotos
   const queryParameters = {
     query,
     page: currentPageNumber,
     perPage: pageSize,
   };
 
-  const { data } = useSearch(queryParameters);
-  if (!data) {
-    return null;
-  }
+  const { data, isError } = useSearch(queryParameters);
 
   const handleTagClick = (tag: string) => {
     setFilter(tag);
   };
 
-  const tags = getTags(data.response.results);
+  const tags = getTags(data?.response.results);
   const sortedTags = tags.sort((a, b) => (a > b ? 1 : -1));
 
-  const photos = getFilteredPhotos(data.response.results, filter);
+  const photos = getFilteredPhotos(data?.response.results, filter);
 
   return (
-    <Flex direction="column" maxWidth="100vw">
-      <TagsPanel px="2" tags={sortedTags} onTagClick={handleTagClick} />
-      <PagerChanger
-        ml="2"
-        alignSelf="flex-end"
-        pageSize={pageSize}
-        onPageSizeChange={onPageSizeChange}
-      />
-      <Gallery photos={photos} />
-      <GalleryPager
-        alignSelf="center"
-        currentPageNumber={currentPageNumber}
-        totalPages={data?.response.total_pages}
-        py="2"
-      />
-    </Flex>
+    <>
+      {isError && <ErrorSplash />}
+      {!isError && (
+        <Flex direction="column" maxWidth="100vw">
+          <TagsPanel px="2" tags={sortedTags} onTagClick={handleTagClick} />
+          <PagerChanger
+            ml="2"
+            alignSelf="flex-end"
+            pageSize={pageSize}
+            onPageSizeChange={onPageSizeChange}
+          />
+          <Gallery photos={photos} />
+          <GalleryPager
+            alignSelf="center"
+            currentPageNumber={currentPageNumber}
+            totalPages={data?.response.total_pages ?? 1}
+            py="2"
+          />
+        </Flex>
+      )}
+    </>
   );
 };
 
-export const getTags = (results: Basic[]): string[] => {
+export const getTags = (results: Basic[] | undefined): string[] => {
+  if (!results) {
+    return [];
+  }
   const tagsHash: Record<string, number> = {};
   results.forEach((result: SearchBasic) => {
     result.tags?.forEach((tag) => {
@@ -85,7 +90,13 @@ export const getTags = (results: Basic[]): string[] => {
   return tags;
 };
 
-export const getFilteredPhotos = (results: Basic[], filter: string) => {
+export const getFilteredPhotos = (
+  results: Basic[] | undefined,
+  filter: string
+) => {
+  if (!results) {
+    return [];
+  }
   return filter === ""
     ? results
     : results.filter((result: SearchBasic) => {

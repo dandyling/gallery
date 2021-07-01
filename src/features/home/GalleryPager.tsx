@@ -115,7 +115,11 @@ export const GalleryPager = (props: GalleryPagerProps) => {
 };
 
 const getAdjacentPages = (page: number, totalPages: number) => {
-  if (page <= 1) {
+  if (totalPages === 1) {
+    return [1];
+  } else if (totalPages === 2) {
+    return [1, 2];
+  } else if (page <= 1) {
     return [page, page + 1, page + 2];
   } else if (page >= totalPages) {
     return [page - 2, page - 1, page];

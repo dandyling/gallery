@@ -18,16 +18,20 @@ export const useSearch = ({
   page,
   perPage = DEFAULT_PAGE_SIZE,
 }: SearchQuery) => {
-  return useQuery(["search", query, page, perPage], async () => {
-    const result = await api.search.getPhotos({
-      query,
-      orientation: "landscape",
-      perPage,
-      page,
-    });
-    if (result.errors) {
-      throw new Error(result.errors.join("\n"));
-    }
-    return result;
-  });
+  return useQuery(
+    ["search", query, page, perPage],
+    async () => {
+      const result = await api.search.getPhotos({
+        query,
+        orientation: "landscape",
+        perPage,
+        page,
+      });
+      if (result.errors) {
+        throw new Error(result.errors.join("\n"));
+      }
+      return result;
+    },
+    { keepPreviousData: true }
+  );
 };
