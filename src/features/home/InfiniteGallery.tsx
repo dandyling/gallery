@@ -7,7 +7,7 @@ import { Gallery } from "../../components/Gallery";
 import { PagerChanger } from "./PagerChanger";
 import { getFilteredPhotos, getTags, PagerGalleryProps } from "./PagerGallery";
 import { TagsPanel } from "./TagsPanel";
-import { useInfiniteSearch } from "./useInfiniteSearch";
+import { useInfiniteSearch } from "../../data/useInfiniteSearch";
 
 export const InfiniteGallery = (props: PagerGalleryProps) => {
   const { query, pageSize, onPageSizeChange } = props;

@@ -1,24 +1,35 @@
 import { Flex, FlexProps, IconButton, Link } from "@chakra-ui/react";
 import * as React from "react";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import {
+  FaAngleDoubleLeft,
+  FaAngleDoubleRight,
+  FaAngleLeft,
+  FaAngleRight,
+} from "react-icons/fa";
 import { Link as ReactRouterLink, useHistory } from "react-router-dom";
-
-const PAGER_LIMIT = 5;
 
 interface GalleryPagerProps extends FlexProps {
   currentPageNumber: number;
   totalPages: number;
-  limit?: number;
 }
 
 export const GalleryPager = (props: GalleryPagerProps) => {
-  const { currentPageNumber, totalPages, limit = PAGER_LIMIT, ...rest } = props;
-  const pageNumbers = getPageNumbersArray(totalPages, limit);
+  const { currentPageNumber, totalPages, ...rest } = props;
+  const pageNumbers = getAdjacentPages(currentPageNumber, totalPages);
+
   const history = useHistory();
 
   const hasPrevious = currentPageNumber > 1;
 
   const hasNext = currentPageNumber < totalPages;
+
+  const navigateFirst = () => {
+    history.push(String(1));
+  };
+
+  const navigateLast = () => {
+    history.push(String(totalPages));
+  };
 
   const navigatePrevious = () => {
     if (hasPrevious) {
@@ -38,6 +49,14 @@ export const GalleryPager = (props: GalleryPagerProps) => {
         <IconButton
           backgroundColor="transparent"
           size="xs"
+          aria-label="First page"
+          icon={<FaAngleDoubleLeft />}
+          disabled={currentPageNumber <= 2}
+          onClick={navigateFirst}
+        />
+        <IconButton
+          backgroundColor="transparent"
+          size="xs"
           aria-label="Previous page"
           icon={<FaAngleLeft />}
           disabled={!hasPrevious}
@@ -47,8 +66,8 @@ export const GalleryPager = (props: GalleryPagerProps) => {
           return (
             <Link
               as={ReactRouterLink}
-              to={String(p + 1)}
-              key={String(p + 1)}
+              to={String(p)}
+              key={String(p)}
               display="flex"
               justifyContent="center"
               alignItems="center"
@@ -70,7 +89,7 @@ export const GalleryPager = (props: GalleryPagerProps) => {
                 color: "cyan.700",
               }}
             >
-              {p + 1}
+              {p}
             </Link>
           );
         })}
@@ -82,13 +101,25 @@ export const GalleryPager = (props: GalleryPagerProps) => {
           icon={<FaAngleRight />}
           onClick={navigateNext}
         />
+        <IconButton
+          backgroundColor="transparent"
+          size="xs"
+          aria-label="Last page"
+          disabled={currentPageNumber >= totalPages - 1}
+          icon={<FaAngleDoubleRight />}
+          onClick={navigateLast}
+        />
       </Flex>
     </Flex>
   );
 };
 
-const getPageNumbersArray = (totalPages: number, limit: number) => {
-  const pages = totalPages > limit ? limit : totalPages;
-  const pagesArray = [...Array(pages).keys()];
-  return pagesArray;
+const getAdjacentPages = (page: number, totalPages: number) => {
+  if (page <= 1) {
+    return [page, page + 1, page + 2];
+  } else if (page >= totalPages) {
+    return [page - 2, page - 1, page];
+  } else {
+    return [page - 1, page, page + 1];
+  }
 };

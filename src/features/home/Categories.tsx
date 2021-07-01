@@ -1,7 +1,7 @@
 import { Flex, FlexProps, Heading, Image, Text } from "@chakra-ui/react";
-import styled from "@emotion/styled";
 import React from "react";
 import { Basic } from "unsplash-js/dist/methods/topics/types";
+import { RatioContainer } from "../../components/RatioContainer";
 
 interface CategoriesProps extends FlexProps {
   topics: Basic[];
@@ -37,23 +37,27 @@ export const Categories = (props: CategoriesProps) => {
                 borderRadius="2xl"
                 objectFit="cover"
                 minHeight="100%"
-                src={cover_photo?.urls.thumb}
+                src={cover_photo?.urls?.thumb}
                 alt={
                   cover_photo?.alt_description ??
-                  `Photo by ${cover_photo?.user}`
+                  `Photo by ${cover_photo?.user.instagram_username}`
                 }
               />
-              <Text
-                color="white"
-                textAlign="center"
-                position="absolute"
-                bottom="2"
-                fontWeight="bold"
-                shadow="lg"
-                lineHeight="1.1"
-              >
-                {title}
-              </Text>
+              {title && (
+                <Heading
+                  as="h3"
+                  color="white"
+                  textAlign="center"
+                  position="absolute"
+                  bottom="2"
+                  fontWeight="bold"
+                  shadow="lg"
+                  lineHeight="1.1"
+                  fontSize="md"
+                >
+                  {title}
+                </Heading>
+              )}
             </RatioContainer>
           );
         })}
@@ -61,12 +65,3 @@ export const Categories = (props: CategoriesProps) => {
     </Flex>
   );
 };
-
-interface RatioContainerProps extends FlexProps {
-  aspectRatio?: string;
-}
-
-const RatioContainer = styled(Flex)<RatioContainerProps>`
-  aspect-ratio: ${(props) => props.aspectRatio ?? "3 / 4"};
-  position: relative;
-`;

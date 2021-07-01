@@ -6,7 +6,7 @@ import { GalleryPager } from "./GalleryPager";
 import { PagerChanger, PageSize } from "./PagerChanger";
 import { TagsPanel } from "./TagsPanel";
 import { useCurrentPageNumber } from "./useCurrentPageNumber";
-import { useSearch } from "./useSearch";
+import { useSearch } from "../../data/useSearch";
 
 interface BasicTag {
   type: string;
@@ -65,7 +65,7 @@ export const PagerGallery = (props: PagerGalleryProps) => {
       <Gallery photos={photos} />
       <GalleryPager
         alignSelf="center"
-        currentPageNumber={currentPageNumber ?? 1}
+        currentPageNumber={currentPageNumber}
         totalPages={data?.response.total_pages}
         py="2"
       />

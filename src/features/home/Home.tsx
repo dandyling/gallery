@@ -15,7 +15,7 @@ import { Categories } from "./Categories";
 import { InfiniteGallery } from "./InfiniteGallery";
 import { PageSize } from "./PagerChanger";
 import { PagerGallery } from "./PagerGallery";
-import { useTopics } from "./useTopics";
+import { useTopics } from "../../data/useTopics";
 
 export const Home = () => {
   const [search, setSearch] = useState("");
