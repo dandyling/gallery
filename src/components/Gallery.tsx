@@ -17,6 +17,7 @@ export const Gallery = (props: GalleryProps) => {
           <RatioContainer ratio="1 / 1" key={`${i} - ${photo.id}`}>
             <Image
               objectFit="cover"
+              srcSet={`${photo?.urls?.small} 2x`}
               src={photo.urls.thumb}
               alt={
                 photo.alt_description ??

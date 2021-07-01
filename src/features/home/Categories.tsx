@@ -38,6 +38,7 @@ export const Categories = (props: CategoriesProps) => {
                   borderRadius="2xl"
                   objectFit="cover"
                   minHeight="100%"
+                  srcSet={`${cover_photo?.urls?.regular} 2x`}
                   src={cover_photo?.urls?.thumb}
                   alt={
                     cover_photo?.alt_description ??
