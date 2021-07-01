@@ -16,7 +16,10 @@ export const Gallery = (props: GalleryProps) => {
           <AspectRatio ratio={1} key={`${i} - ${photo.id}`}>
             <Image
               src={photo.urls.thumb}
-              alt={photo.alt_description ?? `Photo by ${photo.user}`}
+              alt={
+                photo.alt_description ??
+                `Photo by ${photo.user.instagram_username}`
+              }
             />
           </AspectRatio>
         );

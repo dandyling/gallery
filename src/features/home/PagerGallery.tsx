@@ -67,7 +67,7 @@ export const PagerGallery = (props: PagerGalleryProps) => {
         alignSelf="center"
         currentPageNumber={currentPageNumber ?? 1}
         totalPages={data?.response.total_pages}
-        py="1"
+        py="2"
       />
     </Flex>
   );

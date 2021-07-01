@@ -22,17 +22,7 @@ export const Home = () => {
   const [pageSize, setPageSize] = useState<PageSize>(PageSize.All);
 
   const topics = useTopics();
-
-  const handleClickCategory = (category: string) => {
-    return setSearch(category);
-  };
-
-  const handlePageSizeChange = (size: PageSize) => {
-    setPageSize(size);
-  };
-
-  const query =
-    search === "" ? getDefaultTopic(topics.data?.response.results) : search;
+  const query = getQuery(search)(topics.data?.response.results);
 
   return (
     <Box minWidth="100vw" maxWidth="100vw" minHeight="100vh" maxHeight="100vh">
@@ -73,7 +63,7 @@ export const Home = () => {
         >
           <Categories
             topics={topics.data?.response.results ?? []}
-            onClickCategory={handleClickCategory}
+            onClickCategory={setSearch}
             pl="4"
             pb="4"
           />
@@ -81,13 +71,13 @@ export const Home = () => {
             <PagerGallery
               query={query}
               pageSize={pageSize}
-              onPageSizeChange={handlePageSizeChange}
+              onPageSizeChange={setPageSize}
             />
           ) : (
             <InfiniteGallery
               query={query}
               pageSize={pageSize}
-              onPageSizeChange={handlePageSizeChange}
+              onPageSizeChange={setPageSize}
             />
           )}
         </Flex>
@@ -96,6 +86,9 @@ export const Home = () => {
   );
 };
 
-const getDefaultTopic = (topics: Partial<Basic>[] | undefined): string => {
-  return topics ? topics![0].title! : "Wallpapers";
-};
+function getQuery(search: string) {
+  return function getDefaultTopic(topics: Partial<Basic>[] | undefined) {
+    const defaultSearch = topics ? topics![0].title! : "Wallpapers";
+    return search === "" ? defaultSearch : search;
+  };
+}
