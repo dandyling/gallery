@@ -66,9 +66,9 @@ export const PagerGallery = (props: PagerGalleryProps) => {
           {isLoading && <LinearProgress color="secondary" />}
           <Gallery photos={photos} />
           <GalleryPager
-            alignSelf="center"
             currentPageNumber={currentPageNumber}
             totalPages={data?.response.total_pages ?? 1}
+            alignSelf="center"
             py="2"
           />
         </Flex>
