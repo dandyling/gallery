@@ -62,8 +62,8 @@ customize it when you are ready for it.
 
 ## Todo
 
-1. Implement error boundaries
-2. Implement loading indicator
-3. Fix the pager current number
-4. Suitable type for pageSize change
+1. Implement error boundaries :white_check_mark:
+2. Implement loading indicator :white_check_mark:
+3. Fix the pager current number :white_check_mark:
+4. Suitable type for pageSize change :white_check_mark:
 5. Use high resolution photos for different screen sizes

@@ -1,5 +1,6 @@
 import { Flex, FlexProps, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 import { Basic } from "unsplash-js/dist/methods/topics/types";
 import { RatioContainer } from "../../components/RatioContainer";
 
@@ -21,44 +22,45 @@ export const Categories = (props: CategoriesProps) => {
           const { cover_photo, title, id } = topic;
 
           const handleClick = () => {
-            return onClickCategory(title);
+            onClickCategory(title);
           };
 
           return (
-            <RatioContainer
-              mr="2"
-              minHeight="35vw"
-              maxHeight="30ch"
-              onClick={handleClick}
-              key={`${i} - ${id}`}
-              justifyContent="center"
-            >
-              <Image
-                borderRadius="2xl"
-                objectFit="cover"
-                minHeight="100%"
-                src={cover_photo?.urls?.thumb}
-                alt={
-                  cover_photo?.alt_description ??
-                  `Photo by ${cover_photo?.user.instagram_username}`
-                }
-              />
-              {title && (
-                <Heading
-                  as="h3"
-                  color="white"
-                  textAlign="center"
-                  position="absolute"
-                  bottom="2"
-                  fontWeight="bold"
-                  shadow="lg"
-                  lineHeight="1.1"
-                  fontSize="md"
-                >
-                  {title}
-                </Heading>
-              )}
-            </RatioContainer>
+            <Link to="/" key={`${i} - ${id}`}>
+              <RatioContainer
+                mr="2"
+                minHeight="35vw"
+                maxHeight="30ch"
+                onClick={handleClick}
+                justifyContent="center"
+              >
+                <Image
+                  borderRadius="2xl"
+                  objectFit="cover"
+                  minHeight="100%"
+                  src={cover_photo?.urls?.thumb}
+                  alt={
+                    cover_photo?.alt_description ??
+                    `Photo by ${cover_photo?.user.instagram_username}`
+                  }
+                />
+                {title && (
+                  <Heading
+                    as="h3"
+                    color="white"
+                    textAlign="center"
+                    position="absolute"
+                    bottom="2"
+                    fontWeight="bold"
+                    shadow="lg"
+                    lineHeight="1.1"
+                    fontSize="md"
+                  >
+                    {title}
+                  </Heading>
+                )}
+              </RatioContainer>
+            </Link>
           );
         })}
       </Flex>

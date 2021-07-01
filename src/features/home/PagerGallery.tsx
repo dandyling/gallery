@@ -1,4 +1,5 @@
 import { Flex } from "@chakra-ui/react";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import React, { useEffect, useState } from "react";
 import { Basic } from "unsplash-js/dist/methods/photos/types";
 import { Gallery } from "../../components/Gallery";
@@ -39,7 +40,7 @@ export const PagerGallery = (props: PagerGalleryProps) => {
     perPage: pageSize,
   };
 
-  const { data, isError } = useSearch(queryParameters);
+  const { data, isError, isLoading } = useSearch(queryParameters);
 
   const handleTagClick = (tag: string) => {
     setFilter(tag);
@@ -62,6 +63,7 @@ export const PagerGallery = (props: PagerGalleryProps) => {
             pageSize={pageSize}
             onPageSizeChange={onPageSizeChange}
           />
+          {isLoading && <LinearProgress color="secondary" />}
           <Gallery photos={photos} />
           <GalleryPager
             alignSelf="center"

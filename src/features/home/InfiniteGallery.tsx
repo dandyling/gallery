@@ -1,4 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { InfiniteData } from "react-query";
@@ -19,14 +20,13 @@ export const InfiniteGallery = (props: PagerGalleryProps) => {
     setFilter("");
   }, [query]);
 
-  // TODO: Handle error and isLoading from usePhotos
-
   const queryParameters = {
     query,
     page,
   };
 
-  const { data, isError, fetchNextPage } = useInfiniteSearch(queryParameters);
+  const { data, isError, fetchNextPage, isLoading } =
+    useInfiniteSearch(queryParameters);
 
   const handleNext = async () => {
     await fetchNextPage();
@@ -55,6 +55,7 @@ export const InfiniteGallery = (props: PagerGalleryProps) => {
             pageSize={pageSize}
             onPageSizeChange={onPageSizeChange}
           />
+          {isLoading && <LinearProgress color="secondary" />}
           <Flex
             id="infinite-scroll"
             direction="column"
