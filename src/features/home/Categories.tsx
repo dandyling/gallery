@@ -1,6 +1,6 @@
-import { Flex, FlexProps, Heading, Image, Text } from "@chakra-ui/react";
+import { Flex, FlexProps, Heading, Image, Link } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link as ReactRouterLink } from "react-router-dom";
 import { Basic } from "unsplash-js/dist/methods/topics/types";
 import { RatioContainer } from "../../components/RatioContainer";
 
@@ -26,7 +26,7 @@ export const Categories = (props: CategoriesProps) => {
           };
 
           return (
-            <Link to="/" key={`${i} - ${id}`}>
+            <Link as={ReactRouterLink} to="/" key={`${i} - ${id}`}>
               <RatioContainer
                 mr="2"
                 minHeight="35vw"

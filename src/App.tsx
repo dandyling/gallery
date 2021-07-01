@@ -5,19 +5,19 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Home } from "./features/home/Home";
 import "./App.css";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
-        <Router>
+      <Router>
+        <ChakraProvider theme={theme}>
           <Switch>
             <Route path="/" children={<Home />}></Route>
             <Route path="/:id" children={<Home />}></Route>
           </Switch>
-        </Router>
-      </ChakraProvider>
+        </ChakraProvider>
+      </Router>
     </QueryClientProvider>
   );
 };
