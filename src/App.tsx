@@ -14,7 +14,6 @@ export const App = () => {
         <ChakraProvider theme={theme}>
           <Switch>
             <Route path="/" children={<Home />}></Route>
-            <Route path="/:id" children={<Home />}></Route>
           </Switch>
         </ChakraProvider>
       </Router>

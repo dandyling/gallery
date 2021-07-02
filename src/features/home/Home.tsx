@@ -11,15 +11,11 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Basic } from "unsplash-js/dist/methods/topics/types";
 import { Header } from "../../components/Header";
-import { Categories } from "./Categories";
-import { InfiniteGallery } from "./InfiniteGallery";
-import { PageSize } from "./PagerChanger";
-import { PagerGallery } from "./PagerGallery";
 import { useTopics } from "../../data/useTopics";
+import { InfiniteGallery } from "./InfiniteGallery";
 
 export const Home = () => {
   const [search, setSearch] = useState("");
-  const [pageSize, setPageSize] = useState<PageSize>(PageSize.All);
 
   const topics = useTopics();
   const query = getQuery(search)(topics.data?.response.results);
@@ -61,25 +57,7 @@ export const Home = () => {
           maxWidth="80ch"
           justifyContent="center"
         >
-          <Categories
-            topics={topics.data?.response.results ?? []}
-            onClickCategory={setSearch}
-            pl="4"
-            pb="4"
-          />
-          {pageSize !== PageSize.All ? (
-            <PagerGallery
-              query={query}
-              pageSize={pageSize}
-              onPageSizeChange={setPageSize}
-            />
-          ) : (
-            <InfiniteGallery
-              query={query}
-              pageSize={pageSize}
-              onPageSizeChange={setPageSize}
-            />
-          )}
+          <InfiniteGallery query={query} />
         </Flex>
       </Flex>
     </Box>
