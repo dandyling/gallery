@@ -7,7 +7,6 @@ import { Basic } from "unsplash-js/dist/methods/photos/types";
 import { Gallery } from "../../components/Gallery";
 import { useInfiniteSearch } from "../../data/useInfiniteSearch";
 import { ErrorSplash } from "./ErrorSplash";
-import * as _ from "lodash";
 
 interface InfiniteGalleryProps {
   query: string;
