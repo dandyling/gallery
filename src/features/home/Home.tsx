@@ -1,6 +1,7 @@
 import {
   Box,
   Flex,
+  Heading,
   Icon,
   Input,
   InputGroup,
@@ -57,6 +58,16 @@ export const Home = () => {
           maxWidth="80ch"
           justifyContent="center"
         >
+          <Heading
+            px="2"
+            pb="1"
+            as="h1"
+            fontSize="2xl"
+            textAlign="center"
+            fontWeight="normal"
+          >
+            Download beautiful wallpapers for free here
+          </Heading>
           <InfiniteGallery query={query} />
         </Flex>
       </Flex>
