@@ -1,7 +1,8 @@
-import { Flex, FlexProps, Heading, Image, Link } from "@chakra-ui/react";
+import { Flex, FlexProps, Heading, Link } from "@chakra-ui/react";
 import React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Basic } from "unsplash-js/dist/methods/topics/types";
+import { Photo } from "../../components/Photo";
 import { RatioContainer } from "../../components/RatioContainer";
 
 interface CategoriesProps extends FlexProps {
@@ -33,18 +34,9 @@ export const Categories = (props: CategoriesProps) => {
                 maxHeight="30ch"
                 onClick={handleClick}
                 justifyContent="center"
+                borderRadius="2xl"
               >
-                <Image
-                  borderRadius="2xl"
-                  objectFit="cover"
-                  minHeight="100%"
-                  srcSet={`${cover_photo?.urls?.regular} 2x`}
-                  src={cover_photo?.urls?.thumb}
-                  alt={
-                    cover_photo?.alt_description ??
-                    `Photo by ${cover_photo?.user.instagram_username}`
-                  }
-                />
+                <Photo minHeight="100%" photo={cover_photo} />
                 {title && (
                   <Heading
                     as="h3"
