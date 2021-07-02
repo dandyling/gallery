@@ -1,6 +1,6 @@
 # Unsplash Photo Gallery
 
-This is a website template for an [Unsplash API](https://unsplash.com/documentation) powered photo gallery. You will be able to use the website to display beautiful photos and wallpapers using the [api](https://unsplash.com/documentation) provided by Unsplash.
+This is a website template for [Unsplash](https://unsplash.com) powered photo gallery. You will be able to use the website to display beautiful photos and wallpapers using the [Unsplash API](https://unsplash.com/documentation) provided by Unsplash.
 
 The app is built with performance in mind. It uses [React Query](https://react-query.tanstack.com/), which has many benefits such as showing stale data while refetching, and infinite query. It also uses [Chakra UI](https://chakra-ui.com/), an accessible component library which are easily composible.
 
@@ -12,7 +12,7 @@ The application is responsive with mobile-first.
 
 ## Application structure
 
-The app is written to be as modular as possible. You will find the structure of the folders as below to encourage code reuse
+The app is written to be as modular as possible. You will find the structure of the folders as below to encourage code reuse.
 
 1. Components folder
 
@@ -44,7 +44,7 @@ These are data hooks that call the api. You can use them for example below
 
 4. Tests
 
-The app is tested using jest and testing-libary. You can view the test coverage in `/coverage/lcov-report/index.html`.
+The app is tested using jest and testing-libary. You can view the test coverage in the directory `/coverage/lcov-report/index.html`.
 
 ## Getting Started
 
@@ -109,12 +109,12 @@ npm run build
 yarn run build
 ```
 
-You will find the output bundle in `/build` directory. You can deploy it just by uploading the whole folder to a provider such as [netlify](https://www.netlify.com/).
+You will find the output bundle in `/build` directory. You can deploy it just by uploading the whole folder to a provider such as [Netlify](https://www.netlify.com/).
 
 ## Authors
 
-- Initial idea by[Dandy Ling](https://github.com/dandyling/)
+- Initial idea by [Dandy Ling](https://github.com/dandyling/)
 
 ## Todo
 
-1. Implement prefetching for infinite query
+1. Implement prefetching for infinite query.
