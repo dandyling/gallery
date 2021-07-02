@@ -31,7 +31,7 @@ export const Photo = (props: PhotoProps) => {
         {...rest}
         objectFit="cover"
         srcSet={`${photo?.urls?.regular} 2x`}
-        src={photo.urls.thumb}
+        src={photo?.urls?.thumb}
         alt={
           photo.alt_description ?? `Photo by ${photo.user.instagram_username}`
         }

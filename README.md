@@ -1,8 +1,8 @@
 # Unsplash Photo Gallery
 
-This is a website template for an [Unsplash API](https://unsplash.com/) powered photo gallery. You will be able to use the website to display beautiful photos and wallpapers using the api provided by Unsplash.
+This is a website template for an [Unsplash API](https://unsplash.com/documentation) powered photo gallery. You will be able to use the website to display beautiful photos and wallpapers using the [api](https://unsplash.com/documentation) provided by Unsplash.
 
-The app is built with performance in mind. It uses [React Query](https://react-query.tanstack.com/), which has many benefits such as showing stale data while refetching. It also uses [Chakra UI](https://chakra-ui.com/), an accessible component library which are easily composible.
+The app is built with performance in mind. It uses [React Query](https://react-query.tanstack.com/), which has many benefits such as showing stale data while refetching, and infinite query. It also uses [Chakra UI](https://chakra-ui.com/), an accessible component library which are easily composible.
 
 Using the photo gallery, you will be able to scroll through photos infinitely. You will also be able to browse photos by categories. The photos are also optimized to show different resolutions depending on your screen size, and will show a [blurhash](https://blurha.sh/) while loading.
 
@@ -14,41 +14,41 @@ The application is responsive with mobile-first.
 
 The app is written to be as modular as possible. You will find the structure of the folders as below to encourage code reuse
 
-### Components folder
+1. Components folder
 
 ```bash
 /components
 ```
 
-This folder is purely concerned with the presentational components in the application, such as `<Gallery>` and `<Photo />` etc. These components are generic components that can be reuse throughout the application. They do not contain business logic.
+This folder is purely concerned with the presentational components in the application, such as `<Gallery>` and `<Photo />` etc. These components are generic components that can be reuse throughout the application and they do not contain business logic.
 
-### Features
+2. Features
 
 ```bash
 /features
 ```
 
-The app is separated into domain called features. Here you can find the React components that are specific to certain domain feature. For example, you can find the Unsplash's API photo gallery which the `/features/home` directory.
+The app is separated into domain called features. Here you can find the components that are specific to certain domain feature. For example, you can find the Unsplash's API photo gallery under the `/features/home` directory.
 
 For extra features, you can add it under this directory.
 
-### Business logic
+3. Business logic
 
 ```bash
 /data
 ```
 
-These are data hooks that call [Unsplash's api](https://unsplash.com/documentation). You can use them simply by calling
+These are data hooks that call the api. You can use them for example below
 
 `const { data } = useSearch()`
 
-### Tests
+4. Tests
 
-This app is tested using jest and testing-libary. You can view the test coverage setup by running `npm run coverage` or `yarn run coverage` and see the report in `/coverage/index.html`.
+The app is tested using jest and testing-libary. You can view the test coverage in `/coverage/index.html`.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project to a live system.
 
 ### To Install
 
