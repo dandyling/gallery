@@ -7,6 +7,7 @@ import { Basic } from "unsplash-js/dist/methods/photos/types";
 interface PhotoProps extends ImageProps {
   photo: Basic | null;
 }
+
 export const Photo = (props: PhotoProps) => {
   const { photo, ...rest } = props;
   const [isLoaded, setIsLoaded] = useState(false);

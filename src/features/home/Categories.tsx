@@ -34,9 +34,12 @@ export const Categories = (props: CategoriesProps) => {
                 maxHeight="30ch"
                 onClick={handleClick}
                 justifyContent="center"
-                borderRadius="2xl"
               >
-                <Photo minHeight="100%" photo={cover_photo} />
+                <Photo
+                  borderRadius="2xl"
+                  minHeight="100%"
+                  photo={cover_photo}
+                />
                 {title && (
                   <Heading
                     as="h3"
