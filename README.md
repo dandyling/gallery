@@ -44,7 +44,7 @@ These are data hooks that call the api. You can use them for example below
 
 4. Tests
 
-The app is tested using jest and testing-libary. You can view the test coverage in `/coverage/index.html`.
+The app is tested using jest and testing-libary. You can view the test coverage in `/coverage/lcov-report/index.html`.
 
 ## Getting Started
 
@@ -97,7 +97,7 @@ npm run coverage
 yarn run coverage
 ```
 
-You will be able to see the coverage in `/coverage/index.html`
+You will be able to see the coverage in `/coverage/lcov-report/index.html`
 
 ## Deployment
 
@@ -109,12 +109,12 @@ npm run build
 yarn run build
 ```
 
-You will find the output bundle in `/build` directory. You can deploy it just by uploading the whole folder to a provider such as netlify.
+You will find the output bundle in `/build` directory. You can deploy it just by uploading the whole folder to a provider such as [netlify](https://www.netlify.com/).
 
 ## Authors
 
-- [Dandy Ling](https://github.com/dandyling/)
+- Initial idea by[Dandy Ling](https://github.com/dandyling/)
 
 ## Todo
 
-Implement prefetching for infinite query
+1. Implement prefetching for infinite query
