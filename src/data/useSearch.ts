@@ -1,8 +1,11 @@
 import { useQuery } from "react-query";
 import { createApi } from "unsplash-js";
 
+export const UNSPLASH_API_KEY =
+  "8f9fbd10d8bb0a7e69dd531aea77d5a0b84152b806286ed7f83f896c1987413b";
+
 export const api = createApi({
-  accessKey: "8f9fbd10d8bb0a7e69dd531aea77d5a0b84152b806286ed7f83f896c1987413b",
+  accessKey: UNSPLASH_API_KEY,
 });
 
 export const DEFAULT_PAGE_SIZE = 20;
