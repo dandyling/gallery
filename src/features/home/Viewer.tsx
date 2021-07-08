@@ -115,11 +115,16 @@ export const Viewer = (props: ViewerProps) => {
           <Flex mt="2" color="white">
             <Text mr="1">Photo by</Text>
             <Link
+              fontStyle="italic"
               textDecoration="underline"
               href={`https://unsplash.com/@${username}?utm_source=splash-wallpaper&utm_medium=referral`}
             >{`${first_name} ${last_name}`}</Link>
             <Text mx="1">on</Text>
-            <Link textDecoration="underline" href="https://unsplash.com/">
+            <Link
+              fontStyle="italic"
+              textDecoration="underline"
+              href="https://unsplash.com/"
+            >
               Unsplash
             </Link>
           </Flex>
