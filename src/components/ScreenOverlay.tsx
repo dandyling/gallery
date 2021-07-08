@@ -1,5 +1,5 @@
 import { Flex, FlexProps } from "@chakra-ui/react";
-import React, { MouseEventHandler, ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 interface ScreenOverlayProps extends FlexProps {
   children?: ReactNode;

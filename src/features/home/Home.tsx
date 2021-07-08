@@ -39,7 +39,7 @@ export const Home = (props: HomeProps) => {
             />
             <Input
               size="lg"
-              placeholder="Search for photos"
+              placeholder="Search for wallpaper here"
               value={search}
               onChange={onSearchChange}
             />
