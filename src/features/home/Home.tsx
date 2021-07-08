@@ -8,18 +8,23 @@ import {
   InputLeftElement,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Basic } from "unsplash-js/dist/methods/topics/types";
 import { Header } from "../../components/Header";
-import { useTopics } from "../../data/useTopics";
 import { InfiniteGallery } from "./InfiniteGallery";
 
-export const Home = () => {
-  const [search, setSearch] = useState("");
+interface HomeProps {
+  search: string;
+  onSearchChange(e: ChangeEvent<HTMLInputElement>): void;
+  page: number;
+  setPage: Dispatch<SetStateAction<number>>;
+}
 
-  const topics = useTopics();
-  const query = getQuery(search)(topics.data?.response.results);
+export const Home = (props: HomeProps) => {
+  const { search, onSearchChange, page, setPage } = props;
+
+  const query = getQuery(search)();
 
   return (
     <Box minWidth="100vw" maxWidth="100vw" minHeight="100vh" maxHeight="100vh">
@@ -36,7 +41,7 @@ export const Home = () => {
               size="lg"
               placeholder="Search for photos"
               value={search}
-              onChange={(e) => setSearch(e.currentTarget.value)}
+              onChange={onSearchChange}
             />
           </InputGroup>
         </Flex>
@@ -68,15 +73,17 @@ export const Home = () => {
           >
             Download beautiful wallpapers for free here
           </Heading>
-          <InfiniteGallery query={query} />
+          <InfiniteGallery page={page} setPage={setPage} query={query} />
         </Flex>
       </Flex>
     </Box>
   );
 };
 
-function getQuery(search: string) {
-  return function getDefaultTopic(topics: Partial<Basic>[] | undefined) {
+export function getQuery(search: string) {
+  return function getDefaultTopic(
+    topics: Partial<Basic>[] | undefined = undefined
+  ) {
     const defaultSearch = topics ? topics![0].title! : "Wallpapers";
     return search === "" ? defaultSearch : search;
   };

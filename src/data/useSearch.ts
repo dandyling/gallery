@@ -14,6 +14,7 @@ export interface SearchQuery {
   query: string;
   page: number;
   perPage?: number;
+  enabled?: boolean;
 }
 
 export const useSearch = ({

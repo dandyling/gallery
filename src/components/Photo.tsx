@@ -5,7 +5,7 @@ import { Blurhash } from "react-blurhash";
 import { Basic } from "unsplash-js/dist/methods/photos/types";
 
 interface PhotoProps extends ImageProps {
-  photo: Basic | null;
+  photo: Basic | undefined;
 }
 
 export const Photo = (props: PhotoProps) => {

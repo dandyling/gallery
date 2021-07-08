@@ -2,17 +2,11 @@ import { Flex, FlexProps } from "@chakra-ui/react";
 import React, { MouseEventHandler, ReactNode } from "react";
 
 interface ScreenOverlayProps extends FlexProps {
-  onClickOverlay(): void;
   children?: ReactNode;
 }
 
 export const ScreenOverlay = (props: ScreenOverlayProps) => {
-  const { children, onClickOverlay, ...rest } = props;
-
-  const handleClick: MouseEventHandler<HTMLDivElement> = (e) => {
-    e.stopPropagation();
-    onClickOverlay();
-  };
+  const { children, ...rest } = props;
 
   return (
     <Flex
@@ -22,10 +16,9 @@ export const ScreenOverlay = (props: ScreenOverlayProps) => {
       height="100vh"
       top="0"
       left="0"
-      onClick={handleClick}
       {...rest}
     >
-      <Flex onClick={(e) => e.stopPropagation()}>{children}</Flex>
+      {children}
     </Flex>
   );
 };

@@ -5,6 +5,7 @@ export const useInfiniteSearch = ({
   query,
   page,
   perPage = DEFAULT_PAGE_SIZE,
+  enabled = true,
 }: SearchQuery) => {
   return useInfiniteQuery(
     ["infinite", query],
@@ -22,6 +23,7 @@ export const useInfiniteSearch = ({
     },
     {
       getNextPageParam: () => page + 1,
+      enabled,
     }
   );
 };
