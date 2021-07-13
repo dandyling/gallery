@@ -1,11 +1,9 @@
 import React from "react";
-import { useHistory, withRouter } from "react-router-dom";
 import ReactGA from "react-ga";
+import { withRouter } from "react-router-dom";
 
-const RouteChangeTracker = () => {
-  const history = useHistory();
-
-  history.listen((location) => {
+const RouteChangeTracker = ({ history }: any) => {
+  history.listen((location: any) => {
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
   });

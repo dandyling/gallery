@@ -16,27 +16,26 @@ export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <RouteChangeTracker>
-          <ChakraProvider theme={theme}>
-            <Switch>
-              <Route
-                path="/photo/:id"
-                children={<Viewer page={page} search={search} />}
-              />
-              <Route
-                path="/"
-                children={
-                  <Home
-                    search={search}
-                    onSearchChange={(e) => setSearch(e.currentTarget.value)}
-                    page={page}
-                    setPage={setPage}
-                  />
-                }
-              />
-            </Switch>
-          </ChakraProvider>
-        </RouteChangeTracker>
+        <RouteChangeTracker />
+        <ChakraProvider theme={theme}>
+          <Switch>
+            <Route
+              path="/photo/:id"
+              children={<Viewer page={page} search={search} />}
+            />
+            <Route
+              path="/"
+              children={
+                <Home
+                  search={search}
+                  onSearchChange={(e) => setSearch(e.currentTarget.value)}
+                  page={page}
+                  setPage={setPage}
+                />
+              }
+            />
+          </Switch>
+        </ChakraProvider>
       </Router>
     </QueryClientProvider>
   );
