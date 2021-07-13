@@ -6,6 +6,7 @@ import { Home } from "./features/home/Home";
 import "./App.css";
 import { Viewer } from "./features/home/Viewer";
 import { useState } from "react";
+import RouteChangeTracker from "./RouteChangeTracker";
 
 export const queryClient = new QueryClient();
 
@@ -15,25 +16,27 @@ export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <ChakraProvider theme={theme}>
-          <Switch>
-            <Route
-              path="/photo/:id"
-              children={<Viewer page={page} search={search} />}
-            />
-            <Route
-              path="/"
-              children={
-                <Home
-                  search={search}
-                  onSearchChange={(e) => setSearch(e.currentTarget.value)}
-                  page={page}
-                  setPage={setPage}
-                />
-              }
-            />
-          </Switch>
-        </ChakraProvider>
+        <RouteChangeTracker>
+          <ChakraProvider theme={theme}>
+            <Switch>
+              <Route
+                path="/photo/:id"
+                children={<Viewer page={page} search={search} />}
+              />
+              <Route
+                path="/"
+                children={
+                  <Home
+                    search={search}
+                    onSearchChange={(e) => setSearch(e.currentTarget.value)}
+                    page={page}
+                    setPage={setPage}
+                  />
+                }
+              />
+            </Switch>
+          </ChakraProvider>
+        </RouteChangeTracker>
       </Router>
     </QueryClientProvider>
   );

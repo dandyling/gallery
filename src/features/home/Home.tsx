@@ -71,7 +71,7 @@ export const Home = (props: HomeProps) => {
             textAlign="center"
             fontWeight="normal"
           >
-            Download beautiful wallpapers for free here
+            Find new wallpapers here
           </Heading>
           <InfiniteGallery page={page} setPage={setPage} query={query} />
         </Flex>

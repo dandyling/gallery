@@ -9,6 +9,7 @@ import { useInfiniteSearch } from "../../data/useInfiniteSearch";
 import { usePhotos } from "../../data/usePhotos";
 import { getQuery } from "./Home";
 import { getPhotosFromResponse } from "./InfiniteGallery";
+import ReactGA from "react-ga";
 
 interface ViewerProps {
   search: string;
@@ -64,6 +65,13 @@ export const Viewer = (props: ViewerProps) => {
     history.push("/");
   };
 
+  const handleDownload = () => {
+    ReactGA.event({
+      category: "User",
+      action: "Clicked Download",
+    });
+  };
+
   return (
     <ScreenOverlay>
       <Flex
@@ -99,6 +107,7 @@ export const Viewer = (props: ViewerProps) => {
             target="_blank"
             rel="nofollow"
             title="Download photo"
+            onClick={handleDownload}
             mr="4"
           >
             Download
