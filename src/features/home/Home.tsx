@@ -28,7 +28,7 @@ export const Home = (props: HomeProps) => {
 
   return (
     <Box minWidth="100vw" maxWidth="100vw" minHeight="100vh" maxHeight="100vh">
-      <Header>
+      {/* <Header>
         <Flex width="100%" maxWidth="80ch" px="4">
           <InputGroup>
             <InputLeftElement
@@ -45,25 +45,25 @@ export const Home = (props: HomeProps) => {
             />
           </InputGroup>
         </Flex>
-      </Header>
+      </Header> */}
       <Flex
         as="main"
-        position="fixed"
-        top="16"
+        // position="fixed"
+        // top="16"
         left="0"
         overflowY="scroll"
         justifyContent="center"
         minWidth="100%"
-        maxHeight="calc(100% - 4rem)"
+        // maxHeight="calc(100% - 4rem)"
       >
         <Flex
           direction="column"
           width="100%"
           height="100%"
-          maxWidth="80ch"
+          // maxWidth="80ch"
           justifyContent="center"
         >
-          <Heading
+          {/* <Heading
             px="2"
             pb="1"
             as="h1"
@@ -72,7 +72,7 @@ export const Home = (props: HomeProps) => {
             fontWeight="normal"
           >
             Find new wallpapers here
-          </Heading>
+          </Heading> */}
           <InfiniteGallery page={page} setPage={setPage} query={query} />
         </Flex>
       </Flex>

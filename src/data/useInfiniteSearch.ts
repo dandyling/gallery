@@ -4,7 +4,7 @@ import { api, DEFAULT_PAGE_SIZE, SearchQuery } from "./useSearch";
 export const useInfiniteSearch = ({
   query,
   page,
-  perPage = DEFAULT_PAGE_SIZE,
+  perPage = 30,
   enabled = true,
 }: SearchQuery) => {
   return useInfiniteQuery(
