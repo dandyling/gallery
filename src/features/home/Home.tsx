@@ -1,17 +1,7 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-} from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import * as React from "react";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { FaSearch } from "react-icons/fa";
 import { Basic } from "unsplash-js/dist/methods/topics/types";
-import { Header } from "../../components/Header";
 import { InfiniteGallery } from "./InfiniteGallery";
 
 interface HomeProps {
@@ -22,7 +12,7 @@ interface HomeProps {
 }
 
 export const Home = (props: HomeProps) => {
-  const { search, onSearchChange, page, setPage } = props;
+  const { search, page, setPage } = props;
 
   const query = getQuery(search)();
 

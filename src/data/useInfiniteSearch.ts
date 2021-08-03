@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "react-query";
-import { api, DEFAULT_PAGE_SIZE, SearchQuery } from "./useSearch";
+import { api, SearchQuery } from "./useSearch";
 
 export const useInfiniteSearch = ({
   query,
